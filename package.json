@@ -6,7 +6,12 @@
   "scripts": {
     "test": "npm run test"
   },
-  "keywords": [],
+  "keywords": [
+    "Hedera",
+    "Hedera Hashgraph",
+    "HIP412",
+    "NFT"
+  ],
   "author": "Michiel Mulders",
   "license": "MIT",
   "bugs": {
