@@ -34,5 +34,6 @@ const validator = (instance, schemaVersion = defaultVersion) => {
 }
 
 module.exports = {
-    validator
+    validator,
+    defaultVersion
 };
