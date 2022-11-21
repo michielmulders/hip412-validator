@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/michielmulders/hip412-validator/issues"
   },
-  "homepage": "https://github.com/michielmulders/hip412-validator#hip412-validator",
+  "homepage": "https://github.com/michielmulders/hip412-validator#how-to-use-this-validator-package",
   "dependencies": {
     "jsonschema": "^1.4.1"
   }
