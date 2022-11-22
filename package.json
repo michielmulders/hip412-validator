@@ -4,7 +4,7 @@
   "description": "Validator for HIP412 metadata standard on Hedera Hashgraph",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "jest"
   },
   "keywords": [
     "Hedera",
@@ -20,5 +20,8 @@
   "homepage": "https://github.com/michielmulders/hip412-validator#how-to-use-this-validator-package",
   "dependencies": {
     "jsonschema": "^1.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }
