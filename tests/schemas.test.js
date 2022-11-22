@@ -24,4 +24,16 @@ describe("Schema package tests", () => {
     expect(typeof schema).toBe("object");
     expect(schema.version).toBe(defaultVersion);
   });
+
+  test("it should return the default schema object for an unsupported value as version", () => {
+    // Arrange
+    const version = []; // Unsupported version (should be string)
+
+    // Act
+    const schema = getSchema(version);
+
+    // Assert
+    expect(typeof schema).toBe("object");
+    expect(schema.version).toBe(defaultVersion);
+  });
 });
