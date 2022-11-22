@@ -1,5 +1,12 @@
-/*
- * @desc: attributes validator -> specific validation rules for the different attribute display types and there values
+/**
+ * The localization validator applies specific rules for the localization object
+ * such as validating two-letter language codes, the default locale, and the localization URI format.
+ * If the localization field is not present (optional field), no errors are returned.
+ * 
+ * @see https://github.com/hashgraph/hedera-improvement-proposal/blob/main/HIP/hip-412.md#localization
+ * 
+ * @param {Object} instance - The JSON object to validate against a schema
+ * @returns {Array} - Contains no, one, or multiple error objects that describe errors for the validated {instance}
  */
 const localizationValidator = (instance) => {
   const localization = instance.localization;
@@ -11,7 +18,7 @@ const localizationValidator = (instance) => {
     // default should be two-letter language code
     errors.push({
       type: "localization",
-      msg: `Default locale should be two-letter language code, got: ${localization.default}`,
+      msg: `Default locale should be two-letter language code, got: ${localization.default}`
     });
   }
 
@@ -23,7 +30,7 @@ const localizationValidator = (instance) => {
     notTwoLetterCode.map((locale) => {
       errors.push({
         type: "localization",
-        msg: `Locale should be two-letter language code, got: ${locale}`,
+        msg: `Locale should be two-letter language code, got: ${locale}`
       });
     });
   }
@@ -32,7 +39,7 @@ const localizationValidator = (instance) => {
     // default locale should not appear in locales array
     errors.push({
       type: "localization",
-      msg: `Default locale should not appear in "locales"`,
+      msg: `Default locale should not appear in "locales"`
     });
   }
 
@@ -40,7 +47,7 @@ const localizationValidator = (instance) => {
   if (!localization.uri.includes("/{locale}.json")) {
     errors.push({
       type: "localization",
-      msg: `URI should be of format "<protocol>://<hash>/{locale}.json"`,
+      msg: `URI should be of format "<protocol>://<hash>/{locale}.json"`
     });
   }
 

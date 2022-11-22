@@ -5,10 +5,13 @@ schemaMap.set('1.0.0', HIP412_1_0_0);
 
 const defaultVersion = '1.0.0'; // Default is HIP412@1.0.0
 
-/*
- * @param version (string)
- * @desc expects a version string that matches a string in the schemaMap like "1.0.0" to load a specific version of the HIP412 metadata JSON schema
-*/
+/**
+ * Retrieves correct schema for the requested HIP412 metadata schema version.
+ * If the version doesn't exist, it will return the default schema version "1.0.0".
+ * 
+ * @param {string} version - The schema version to load.
+ * @return {Object} - Returns a json schema JSON object.
+ */
 const getSchema = (version) => {
     const validVersion = schemaMap.has(version);
     if (validVersion) {

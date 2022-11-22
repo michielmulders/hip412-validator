@@ -1,6 +1,12 @@
-/*
- * @desc: attributes validator -> specific validation rules for the different attribute display types and there values
- * @link: https://github.com/hashgraph/hedera-improvement-proposal/blob/main/HIP/hip-412.md#attributesdisplay_type
+/**
+ * The attributes validator applies specific rules for attribute objects
+ * such as validating the values for different display types.
+ * If the "attributes" property is not present (optional field), no errors are returned.
+ * 
+ * @see https://github.com/hashgraph/hedera-improvement-proposal/blob/main/HIP/hip-412.md#attributesdisplay_type
+ * 
+ * @param {Object} instance - The JSON object to validate against a schema
+ * @returns {Array} - Contains no, one, or multiple error objects that describe errors for the validated {instance}
  */
 const attributesValidator = (instance) => {
   const attributes = instance.attributes;
@@ -19,7 +25,7 @@ const attributesValidator = (instance) => {
         type: "attribute",
         msg: `Trait ${
           attribute.trait_type
-        } of type 'boost' requires number, found ${typeof attribute.value}`,
+        } of type 'boost' requires number, found ${typeof attribute.value}`
       });
     }
 
@@ -30,12 +36,12 @@ const attributesValidator = (instance) => {
           type: "attribute",
           msg: `Trait ${
             attribute.trait_type
-          } of type 'percentage' requires number, found ${typeof attribute.value}`,
+          } of type 'percentage' requires number, found ${typeof attribute.value}`
         });
       } else if (attribute.value < 0 || attribute.value > 100) {
         errors.push({
           type: "attribute",
-          msg: `Trait ${attribute.trait_type} of type 'percentage' must be between [0-100], found ${attribute.value}`,
+          msg: `Trait ${attribute.trait_type} of type 'percentage' must be between [0-100], found ${attribute.value}`
         });
       }
     }
@@ -46,7 +52,7 @@ const attributesValidator = (instance) => {
         // format validation
         errors.push({
           type: "attribute",
-          msg: `Trait ${attribute.trait_type} of type 'color' requires format "rgb(number,number,number)"`,
+          msg: `Trait ${attribute.trait_type} of type 'color' requires format "rgb(number,number,number)"`
         });
       } else {
         // value validation range [0-255]
@@ -55,7 +61,7 @@ const attributesValidator = (instance) => {
           if (rgbVal < 0 || rgbVal > 255) {
             errors.push({
               type: "attribute",
-              msg: `Trait ${attribute.trait_type} of type 'color' requires RGB values between [0-255], got value: ${rgbVal}`,
+              msg: `Trait ${attribute.trait_type} of type 'color' requires RGB values between [0-255], got value: ${rgbVal}`
             });
           }
         });
@@ -71,7 +77,7 @@ const attributesValidator = (instance) => {
         type: "attribute",
         msg: `Trait ${
           attribute.trait_type
-        } of type 'datetime' requires integer value, got type: ${typeof attribute.value}`,
+        } of type 'datetime' requires integer value, got type: ${typeof attribute.value}`
       });
     }
   });
@@ -80,5 +86,5 @@ const attributesValidator = (instance) => {
 };
 
 module.exports = {
-  attributesValidator,
+  attributesValidator
 };
