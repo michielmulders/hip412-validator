@@ -33,20 +33,39 @@ const errors = validator(JSON.stringify(metadata), version);
 The interface for errors looks like this:
 
 ```json
-{
-    "type": "Indicates which validator created the error. Possible values: schema, attribute, localization, and SHA256.",
-    "msg": "Indicates the specific error explanation to be displayed to the user"
-}
+[
+    {
+        "type": "Indicates which validator created the error. Possible values: schema, attribute, localization, and SHA256.",
+        "msg": "Indicates the specific error explanation to be displayed to the user"
+    }
+]
 ```
 
 Here's an example:
 
 ```json
-{
+[{
     "type": "attribute",
     "msg": "Trait stamina of type 'percentage' must be between [0-100], found 157"
-}
+}]
 ```
+
+## Add custom schema versions
+
+You can add custom JSON schemas to the `/schemas` folder. 
+
+You can then add the version to the `schemaMap` in `/schema/index.js` using the following code:
+
+```js
+const HIP412_1_0_0 = require("./HIP412@1.0.0.json");
+const myCustomSchema = require("./myschema.json"); // import your schema
+
+const schemaMap = new Map();
+schemaMap.set('1.0.0', HIP412_1_0_0);
+schemaMap.set('<version>', myCustomSchema); // Add your schema to the map
+```
+
+When you've added your schema to the map, you can validate against your schema version by passing your version to the `validator()` function.
 
 ## Who is this for
 
