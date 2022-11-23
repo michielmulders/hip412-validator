@@ -39,7 +39,7 @@ const localizationValidator = (instance) => {
     // default locale should not appear in locales array
     errors.push({
       type: "localization",
-      msg: `Default locale should not appear in "locales"`
+      msg: `Default locale should not appear in 'localization.locales'`
     });
   }
 
@@ -47,7 +47,7 @@ const localizationValidator = (instance) => {
   if (!localization.uri.includes("/{locale}.json")) {
     errors.push({
       type: "localization",
-      msg: `URI should be of format "<protocol>://<hash>/{locale}.json"`
+      msg: `URI should be of format <protocol>://<hash>/{locale}.json`
     });
   }
 

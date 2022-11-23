@@ -52,7 +52,7 @@ const attributesValidator = (instance) => {
         // format validation
         errors.push({
           type: "attribute",
-          msg: `Trait ${attribute.trait_type} of type 'color' requires format "rgb(number,number,number)"`
+          msg: `Trait ${attribute.trait_type} of type 'color' requires format 'rgb(number,number,number)'`
         });
       } else {
         // value validation range [0-255]
@@ -70,14 +70,14 @@ const attributesValidator = (instance) => {
 
     // Check datetime format: should be integer e.g. 732844800
     if (
-      attribute.display_type === "datetime" ||
-      (attribute.display_type === "date" && !Number.isInteger(attribute.value))
+      (attribute.display_type === "datetime" || attribute.display_type === "date") 
+      && !Number.isInteger(attribute.value)
     ) {
       errors.push({
         type: "attribute",
         msg: `Trait ${
           attribute.trait_type
-        } of type 'datetime' requires integer value, got type: ${typeof attribute.value}`
+        } of type '${attribute.display_type}' requires integer value, got type: ${typeof attribute.value}`
       });
     }
   });
