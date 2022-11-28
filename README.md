@@ -36,7 +36,8 @@ The interface for errors looks like this:
 [
     {
         "type": "Indicates which validator created the error. Possible values: schema, attribute, localization, and SHA256.",
-        "msg": "Indicates the specific error explanation to be displayed to the user"
+        "msg": "Indicates the specific error explanation to be displayed to the user",
+        "path": "Indicates the path of the property for which the error is returned"
     }
 ]
 ```
@@ -46,7 +47,8 @@ Here's an example:
 ```json
 [{
     "type": "attribute",
-    "msg": "Trait stamina of type 'percentage' must be between [0-100], found 157"
+    "msg": "Trait stamina of type 'percentage' must be between [0-100], found 157",
+    "path": "instance.attributes[0]"
 }]
 ```
 

@@ -18,6 +18,7 @@ const schemaValidator = (instance, schema) => {
     errors.push({
       type: "schema",
       msg: error.message,
+      path: error.property
     });
   });
 

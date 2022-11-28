@@ -28,7 +28,7 @@ const validator = (instance, schemaVersion = defaultVersion) => {
         if (!additionalPropertyCheck.every(propertyCheck => propertyCheck === true)) {
             return schemaErrors;
         }
-
+9
         errors.push(...schemaErrors);
     }
 
