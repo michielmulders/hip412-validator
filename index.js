@@ -2,32 +2,6 @@ const { schemaValidator, attributesValidator, localizationValidator, SHA256Valid
 const { getSchema, defaultVersion } = require("./schemas");
 
 /**
- * Distil an errors array from JSON schema into errors and warnings. 
- * We want to separate "additional property" errors into warnings because they don't influence the further validatin of the JSON object.
- * 
- * @param {Array} problems - Errors array from jsonschema
- */
-const distilProblems = (problems) => {
-    const warnings = problems.find(problem => {
-        if (problem.msg.includes(additionalPropertyMsg)) return problem;
-        return null;
-    })
-    const filteredWarnings = warnings.filter(warning => !!warning)
-    console.log(filteredWarnings);
-    const errors = problems.find(problem => {
-        if (!problem.msg.includes(additionalPropertyMsg)) return problem;
-        return null;
-    })
-    const filteredErrors = errors.filter(error => !!error)
-    console.log(filteredErrors);
-
-    return {
-        warnings: filteredWarnings,
-        errors: filteredErrors
-    }
-}
-
-/**
  * Validate a metadata object against a schema. This function validates the instance respectively against
  * the schema validator, attributes validator, localization validator, and SHA256 validator. 
  * 
@@ -45,20 +19,16 @@ const validator = (instance, schemaVersion = defaultVersion) => {
     const schema = getSchema(schemaVersion)
 
     // When errors against the schema are found, you don't want to continue verifying the NFT
+    // Warnings don't matter because they only contain "additional property" warnings
     const schemaProblems = schemaValidator(instance, schema);
-    if (schemaProblems.length > 0) {
-        // However we don't want to continue if it only contains "additional property" errors because they don't hinder the further verification of the NFT
-        const additionalPropertyMsg = "is not allowed to have the additional property";
-        const additionalPropertyCheck = schemaProblems.map(problem => problem.msg.includes(additionalPropertyMsg))
-
-        // If it contains at least one other type of error, we want to return the schema errors instead of continuing the verification process
-        if (!additionalPropertyCheck.every(propertyCheck => propertyCheck === true)) {
-            return distilProblems(schemaProblems);
-        }
-
-        const distilledProblems = distilProblems(schemaProblems);
+    if (schemaProblems.errors.length > 0) {
         errors.push(...distilledProblems.errors);
         warnings.push(...distilledProblems.warnings);
+
+        return {
+            errors,
+            warnings
+        }
     }
 
     const attributeErrors = attributesValidator(instance);

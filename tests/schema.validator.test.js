@@ -18,11 +18,12 @@ describe("Schema validator tests", () => {
     metadata.attributes = attributes;
 
     // Act
-    const errors = schemaValidator(metadata, schema);
+    const schemaProblems = schemaValidator(metadata, schema);
 
     // Assert
-    expect(Array.isArray(errors)).toBe(true);
-    expect(errors.length).toBe(2);
+    expect(Array.isArray(schemaProblems.errors)).toBe(true);
+    expect(Array.isArray(schemaProblems.warnings)).toBe(true);
+    expect(schemaProblems.warnings.length).toBe(2);
     // test for "path" property
   });
 });
