@@ -89,6 +89,42 @@ schemaMap.set('<version>', myCustomSchema); // Add your schema to the map
 
 When you've added your schema to the map, you can validate against your schema version by passing your version to the `validator()` function.
 
+## Add custom validation rules
+
+Set custom validation rules by importing new validators from the `/validators` folder into the `index.js` file. You can then add them to the `validator()` function. Make sure to stick to the `issues` format of errors and warnings (see section "Issues format" for the detailed description).
+
+```js
+const { myCustomValidator, schemaValidator } = require("./validators");
+
+const validator = (instance, schemaVersion = defaultVersion) => {
+    let errors = [];
+    let warnings = [];
+
+    const schema = getSchema(schemaVersion)
+
+    // When errors against the schema are found, you don't want to continue verifying the NFT
+    // Warnings don't matter because they only contain "additional property" warnings that don't break the other validators
+    const schemaProblems = schemaValidator(instance, schema);
+    warnings.push(...schemaProblems.warnings);
+    if (schemaProblems.errors.length > 0) {
+        errors.push(...schemaProblems.errors);
+
+        return {
+            errors,
+            warnings
+        }
+    }
+
+    const customErrors = myCustomValidator(instance);
+    errors.push(...customErrors);
+
+    return {
+        errors,
+        warnings
+    };
+}
+```
+
 ## Who is this for
 
 Anyone who wants to build NFT tooling on Hedera Hashgraph and needs to verify NFT metadata for validatiy against the [HIP412 metadata standard](https://github.com/hashgraph/hedera-improvement-proposal/blob/main/HIP/hip-412.md).
