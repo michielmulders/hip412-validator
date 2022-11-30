@@ -1,6 +1,6 @@
 {
   "name": "@michielmulders/hip412-validator",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Validator for HIP412 metadata standard on Hedera Hashgraph",
   "main": "index.js",
   "scripts": {
