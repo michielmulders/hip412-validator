@@ -22,8 +22,8 @@ const validator = (instance, schemaVersion = defaultVersion) => {
     // Warnings don't matter because they only contain "additional property" warnings
     const schemaProblems = schemaValidator(instance, schema);
     if (schemaProblems.errors.length > 0) {
-        errors.push(...distilledProblems.errors);
-        warnings.push(...distilledProblems.warnings);
+        errors.push(...schemaProblems.errors);
+        warnings.push(...schemaProblems.warnings);
 
         return {
             errors,
