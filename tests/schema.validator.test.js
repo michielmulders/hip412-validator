@@ -10,7 +10,7 @@ let attributes = [
 let additionalProperty = "additional property outside properties object";
 
 describe("Schema validator tests", () => {
-  test("it should return an error when adding additional attributes", () => {
+  test("it should return an error when adding additional attributes but return warnings", () => {
     // Arrange
     const schema = getSchema(defaultVersion);
 
@@ -19,6 +19,7 @@ describe("Schema validator tests", () => {
 
     // Act
     const schemaProblems = schemaValidator(metadata, schema);
+    console.log(schemaProblems)
 
     // Assert
     expect(Array.isArray(schemaProblems.errors)).toBe(true);

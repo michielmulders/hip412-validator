@@ -54,7 +54,7 @@ const schemaValidator = (instance, schema) => {
   distilledProblems.warnings.forEach((warning) => {
     warnings.push({
       type: "schema",
-      msg: warning.message,
+      msg: warning.message.replace(/\"/g, "'"),
       path: warning.property
     });
   });

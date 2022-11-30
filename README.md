@@ -25,31 +25,51 @@ const metadata = {
 };
 const version = '1.0.0';
 
-const errors = validator(JSON.stringify(metadata), version);
+const issues = validator(JSON.stringify(metadata), version);
 ```
 
-## Errors format
+## Issues format
 
-The interface for errors looks like this:
+The interface for issues contains of `errors` and `warnings`.
 
 ```json
-[
-    {
-        "type": "Indicates which validator created the error. Possible values: schema, attribute, localization, and SHA256.",
-        "msg": "Indicates the specific error explanation to be displayed to the user",
-        "path": "Indicates the path of the property for which the error is returned"
-    }
-]
+{
+    "errors": [
+        {
+            "type": "Indicates which validator created the error. Possible values: schema, attribute, localization, and SHA256.",
+            "msg": "Indicates the specific error explanation to be displayed to the user",
+            "path": "Indicates the path of the property for which the error is returned"
+        }
+    ],
+    "warning": [
+        {
+            "type": "schema",
+            "msg": "is not allowed to have the additional property 'someAdditionalProperty'",
+            "path": "Indicates the path of the property for which the error is returned"
+        }
+    ]
+}
 ```
 
 Here's an example:
 
 ```json
-[{
-    "type": "attribute",
-    "msg": "Trait stamina of type 'percentage' must be between [0-100], found 157",
-    "path": "instance.attributes[0]"
-}]
+{
+    "errors": [
+        {
+            "type": "attribute",
+            "msg": "Trait stamina of type 'percentage' must be between [0-100], found 157",
+            "path": "instance.attributes[0]"
+        }
+    ],
+    "warnings": [
+        {
+            "type": "schema",
+            "msg": "is not allowed to have the additional property 'imagePreview'",
+            "path": "instance"
+        }
+    ]
+}
 ```
 
 ## Add custom schema versions
