@@ -2,8 +2,6 @@ const { schemaValidator } = require('../validators/schema');
 const { getSchema, defaultVersion } = require('../schemas');
 const validMetadata = require('./data/valid-HIP412.json');
 
-let additionalProperty = "additional property outside properties object";
-
 describe("Schema validator tests", () => {
   test("it should not return errors or warnings for a correct JSON schema", () => {
     // Arrange

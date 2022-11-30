@@ -15,6 +15,7 @@ const distilProblems = (problems) => {
         return null;
     })
     const filteredWarnings = warnings.filter(warning => !!warning)
+
     const errors = problems.map(problem => {
         if (!problem.message.includes(additionalPropertyMsg)) return problem;
         return null;

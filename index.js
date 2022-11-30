@@ -21,9 +21,9 @@ const validator = (instance, schemaVersion = defaultVersion) => {
     // When errors against the schema are found, you don't want to continue verifying the NFT
     // Warnings don't matter because they only contain "additional property" warnings
     const schemaProblems = schemaValidator(instance, schema);
+    warnings.push(...schemaProblems.warnings);
     if (schemaProblems.errors.length > 0) {
         errors.push(...schemaProblems.errors);
-        warnings.push(...schemaProblems.warnings);
 
         return {
             errors,
