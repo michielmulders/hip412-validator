@@ -1,4 +1,20 @@
-# How to use this validator package
+# Hedera NFT Utilities
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- Package: [HIP412 metadata validator](#hip412-validator)
+- Package: [Local metadata validator](#local-validator)
+- Package: [Risk score calculation](#risk-score-calculation)
+- Package: [Rarity score calculation](#rarity-score-calculation)
+- [Questions, contact us, or improvement proposals?](#questions-or-improvement-proposals)
+
+## Introduction
+
+// What is this?
+
+## HIP412 Validator
+### How to use this validator package
 
 Install the package:
 
@@ -28,7 +44,7 @@ const version = '1.0.0';
 const issues = validator(JSON.stringify(metadata), version);
 ```
 
-## Issues format
+### Issues format
 
 The interface for issues contains of `errors` and `warnings`.
 
@@ -72,7 +88,7 @@ Here's an example:
 }
 ```
 
-## Add custom schema versions
+### Add custom schema versions
 
 You can add custom JSON schemas to the `/schemas` folder. 
 
@@ -89,7 +105,7 @@ schemaMap.set('<version>', myCustomSchema); // Add your schema to the map
 
 When you've added your schema to the map, you can validate against your schema version by passing your version to the `validator()` function.
 
-## Add custom validation rules
+### Add custom validation rules
 
 Set custom validation rules by importing new validators from the `/validators` folder into the `index.js` file. You can then add them to the `validator()` function. Make sure to stick to the `issues` format of errors and warnings (see section "Issues format" for the detailed description).
 
@@ -125,10 +141,19 @@ const validator = (instance, schemaVersion = defaultVersion) => {
 }
 ```
 
-## Who is this for
+### Who is this for
 
 Anyone who wants to build NFT tooling on Hedera Hashgraph and needs to verify NFT metadata for validatiy against the [HIP412 metadata standard](https://github.com/hashgraph/hedera-improvement-proposal/blob/main/HIP/hip-412.md).
 
-## Questions or Improvement Proposals?
+## Local validator
+
+//
+
+## Risk score calculation
+
+## Rarity score calculation
+
+## Questions or Improvement Proposals
 
 Please create an issue or PR on [this repository](https://github.com/michielmulders/hip412-validator). Make sure to join the [Hedera Discord server](https://hedera.com/discord) to ask questions or discuss improvement suggestions.
+
