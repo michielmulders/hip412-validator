@@ -1,4 +1,4 @@
-const { getSchema, defaultVersion } = require("../schemas");
+const { getSchema, defaultVersion } = require("../../validator/schemas");
 
 describe("Schema package tests", () => {
   test("it should return a schema object for a valid version in the schema map", () => {

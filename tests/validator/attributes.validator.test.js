@@ -1,4 +1,4 @@
-const { attributesValidator } = require("../validators/attributes");
+const { attributesValidator } = require("../../validator/validators/attributes");
 const validMetadata = require("./data/valid-HIP412.json");
 
 describe("Attributes validator tests", () => {

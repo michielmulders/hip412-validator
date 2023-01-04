@@ -1,4 +1,4 @@
-const { localizationValidator } = require('../validators/localization');
+const { localizationValidator } = require('../../validator/validators/localization');
 const validMetadata = require('./data/valid-HIP412.json');
 
 let localization = {

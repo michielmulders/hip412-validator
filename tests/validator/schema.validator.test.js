@@ -1,5 +1,5 @@
-const { schemaValidator } = require('../validators/schema');
-const { getSchema, defaultVersion } = require('../schemas');
+const { schemaValidator } = require('../../validator/validators/schema');
+const { getSchema, defaultVersion } = require('../../validator/schemas');
 const validMetadata = require('./data/valid-HIP412.json');
 
 describe("Schema validator tests", () => {

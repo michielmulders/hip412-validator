@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/michielmulders/hip412-validator#how-to-use-this-validator-package",
   "dependencies": {
+    "axios": "^1.2.2",
     "jsonschema": "^1.4.1"
   },
   "devDependencies": {
